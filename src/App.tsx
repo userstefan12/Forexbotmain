@@ -1,9 +1,10 @@
 import React from 'react';
 import { Header } from './components/Header';
-import { ChatInterface } from './components/ChatInterface';
+import { ChatSection } from './components/ChatSection';
 import { PasswordModal } from './components/PasswordModal';
 import { BuyModal } from './components/BuyModal';
 import { useChatApp } from './hooks/useChatApp';
+import { CHAT_TIERS } from './config/tiers';
 
 function App() {
   const {
@@ -22,9 +23,11 @@ function App() {
     sendMessage
   } = useChatApp();
 
+  const currentTierData = CHAT_TIERS.find(tier => tier.key === currentTier);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="max-w-7xl mx-auto">
         <Header
           email={email}
           onPremiumClick={() => {
@@ -33,13 +36,16 @@ function App() {
           }}
         />
 
-        <main className="p-4 lg:p-8">
-          <ChatInterface
-            currentTier={currentTier}
-            counts={counts}
-            history={history}
-            onSendMessage={sendMessage}
-          />
+        <main className="p-3 sm:p-6 space-y-4 sm:space-y-6">
+          {currentTierData && (
+            <ChatSection
+              tier={currentTierData}
+              messages={history[currentTier] || []}
+              count={counts[currentTier] || 0}
+              onSendMessage={(message) => sendMessage(currentTier, message)}
+              isActive={true}
+            />
+          )}
         </main>
 
         <PasswordModal
