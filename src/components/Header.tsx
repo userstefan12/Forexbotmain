@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrendingUp } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 
 interface HeaderProps {
   email: string | null;
@@ -8,35 +8,24 @@ interface HeaderProps {
 
 export function Header({ email, onPremiumClick }: HeaderProps) {
   return (
-    <header className="bg-white border-b border-gray-100 shadow-sm">
-      <div className="max-w-4xl mx-auto px-6 py-4">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <img 
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBH31aoPyY7d9q3hMhZiV1rTr3mhfAY5OtIg&s" 
-              alt="ForexBot Logo" 
-              className="w-10 h-10 rounded-xl shadow-lg object-cover"
-            />
-            <div>
-              <h1 className="text-xl font-bold text-gray-900">ForexBot</h1>
-              <p className="text-sm text-gray-500">AI-Powered Trading Analysis</p>
-            </div>
-          </div>
-          
-          <div className="flex items-center space-x-4">
-            {email && (
-              <div className="hidden sm:block text-sm text-gray-600 bg-gray-50 px-3 py-2 rounded-lg">
-                {email}
-              </div>
-            )}
-            <button
-              onClick={onPremiumClick}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 shadow-sm hover:shadow-md"
-            >
-              Premium Access
-            </button>
-          </div>
-        </div>
+    <header className="flex justify-between items-center bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 text-white p-6 shadow-xl">
+      <div className="flex flex-col">
+        <h1 className="text-2xl font-bold flex items-center gap-2 tracking-wide">
+          <MessageCircle className="w-7 h-7" />
+          ForexBot
+        </h1>
+        <p className="text-sm opacity-90 font-medium">Multi-Agent AI for Gold & Forex Analysis</p>
+      </div>
+      <div className="flex items-center gap-4">
+        <span className="text-sm opacity-95 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm">
+          {email ? `Chat ID: ${email}` : "No Chat ID set"}
+        </span>
+        <button
+          onClick={onPremiumClick}
+          className="bg-white/20 hover:bg-white/30 px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/50 backdrop-blur-sm border border-white/20"
+        >
+          Have Premium?
+        </button>
       </div>
     </header>
   );

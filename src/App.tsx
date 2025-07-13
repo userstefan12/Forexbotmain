@@ -15,6 +15,7 @@ function App() {
     isPasswordModalOpen,
     isBuyModalOpen,
     passwordError,
+    switchTier,
     setIsPasswordModalOpen,
     setIsBuyModalOpen,
     setPasswordError,
@@ -25,38 +26,40 @@ function App() {
   const currentTierData = CHAT_TIERS.find(tier => tier.key === currentTier);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header
-        email={email}
-        onPremiumClick={() => {
-          setPasswordError('');
-          setIsPasswordModalOpen(true);
-        }}
-      />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="max-w-3xl mx-auto">
+        <Header
+          email={email}
+          onPremiumClick={() => {
+            setPasswordError('');
+            setIsPasswordModalOpen(true);
+          }}
+        />
 
-      <main className="max-w-4xl mx-auto p-6">
-        {currentTierData && (
-          <ChatSection
-            tier={currentTierData}
-            messages={history[currentTier] || []}
-            count={counts[currentTier] || 0}
-            onSendMessage={(message) => sendMessage(currentTier, message)}
-            isActive={true}
-          />
-        )}
-      </main>
+        <main className="p-6 space-y-6">
+          {currentTierData && (
+            <ChatSection
+              tier={currentTierData}
+              messages={history[currentTier] || []}
+              count={counts[currentTier] || 0}
+              onSendMessage={(message) => sendMessage(currentTier, message)}
+              isActive={true}
+            />
+          )}
+        </main>
 
-      <PasswordModal
-        isOpen={isPasswordModalOpen}
-        onClose={() => setIsPasswordModalOpen(false)}
-        onSubmit={handlePasswordSubmit}
-        error={passwordError}
-      />
+        <PasswordModal
+          isOpen={isPasswordModalOpen}
+          onClose={() => setIsPasswordModalOpen(false)}
+          onSubmit={handlePasswordSubmit}
+          error={passwordError}
+        />
 
-      <BuyModal
-        isOpen={isBuyModalOpen}
-        onClose={() => setIsBuyModalOpen(false)}
-      />
+        <BuyModal
+          isOpen={isBuyModalOpen}
+          onClose={() => setIsBuyModalOpen(false)}
+        />
+      </div>
     </div>
   );
 }
