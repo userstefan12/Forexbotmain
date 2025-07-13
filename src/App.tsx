@@ -34,7 +34,7 @@ function App() {
         }}
       />
 
-      <main className="max-w-4xl mx-auto p-3 sm:p-4 lg:p-6 pb-6 sm:pb-8">
+      <main className="max-w-4xl mx-auto p-6">
         {currentTierData && (
           <ChatSection
             tier={currentTierData}
