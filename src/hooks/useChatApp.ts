@@ -85,7 +85,7 @@ export function useChatApp() {
     // Update count immediately after user message
     const newCount = (counts[tierKey] || 0) + 1;
     const updatedCounts = {
-      ...prev,
+      ...counts,
       [tierKey]: newCount
     };
     setCounts(updatedCounts);
