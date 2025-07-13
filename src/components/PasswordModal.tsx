@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, CreditCard, ExternalLink } from 'lucide-react';
+import { X, CreditCard, ExternalLink, Crown, Lock } from 'lucide-react';
 
 interface PasswordModalProps {
   isOpen: boolean;
@@ -29,69 +29,100 @@ export function PasswordModal({ isOpen, onClose, onSubmit, error }: PasswordModa
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50 p-3 sm:p-4">
-      <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 w-full max-w-sm sm:max-w-lg shadow-2xl border border-gray-100 max-h-[90vh] overflow-y-auto">
-        <div className="flex justify-between items-center mb-4 sm:mb-6">
-          <h3 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">🔐 Premium Access</h3>
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl lg:rounded-3xl w-full max-w-md lg:max-w-lg shadow-2xl border border-gray-200/50 max-h-[90vh] overflow-y-auto">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-amber-500 to-orange-500 px-6 lg:px-8 py-6 lg:py-8 relative">
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-red-500 transition-colors p-1 hover:bg-red-50 rounded-full"
+            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors p-1 hover:bg-white/20 rounded-full"
           >
-            <X className="w-5 sm:w-6 h-5 sm:h-6" />
+            <X className="w-5 h-5 lg:w-6 lg:h-6" />
           </button>
+          
+          <div className="flex items-center gap-3 text-white">
+            <Crown className="w-8 h-8 lg:w-10 lg:h-10" />
+            <div>
+              <h3 className="text-xl lg:text-2xl font-bold">Premium Access</h3>
+              <p className="text-amber-100 text-sm lg:text-base">
+                Unlock advanced trading analysis
+              </p>
+            </div>
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-5">
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password Token"
-            className="w-full px-3 sm:px-5 py-3 sm:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm sm:text-lg"
-            autoFocus
-          />
-          
-          {error && (
-            <div className="text-red-600 text-xs sm:text-sm bg-red-50 p-3 sm:p-4 rounded-xl border border-red-200 font-medium">{error}</div>
-          )}
-
-          <button
-            type="submit"
-            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 sm:py-4 rounded-xl font-semibold transition-all duration-200 hover:scale-105 shadow-lg text-sm sm:text-base"
-          >
-            Submit
-          </button>
-        </form>
-
-        <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-200">
-          <h4 className="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4 text-center">💳 Don't have credits? Buy now!</h4>
-          
-          <div className="space-y-2 sm:space-y-3">
-            <button
-              onClick={() => openStripeLink('https://buy.stripe.com/aFa3cuagabhb78k4bacQU03')}
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3 sm:py-4 rounded-xl font-semibold transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2 sm:gap-3 shadow-lg text-xs sm:text-sm"
-            >
-              <CreditCard className="w-4 sm:w-5 h-4 sm:h-5" />
-              🚀 Pro Analysis (30 Credits)
-              <ExternalLink className="w-3 sm:w-4 h-3 sm:h-4" />
-            </button>
+        <div className="p-6 lg:p-8 space-y-6">
+          {/* Password Form */}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Enter Password Token
+              </label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Your premium password token"
+                  className="w-full pl-10 pr-4 py-3 lg:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all duration-200 text-sm lg:text-base"
+                  autoFocus
+                />
+              </div>
+            </div>
             
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm lg:text-base font-medium">
+                {error}
+              </div>
+            )}
+
             <button
-              onClick={() => openStripeLink('https://buy.stripe.com/bJe3cu5ZU0Cx50c5fecQU04')}
-              className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white py-3 sm:py-4 rounded-xl font-semibold transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2 sm:gap-3 shadow-lg text-xs sm:text-sm"
+              type="submit"
+              className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white py-3 lg:py-4 rounded-xl font-semibold transition-all duration-200 hover:scale-105 shadow-lg text-sm lg:text-base"
             >
-              <CreditCard className="w-4 sm:w-5 h-4 sm:h-5" />
-              💎 Elite Analysis (50 Credits)
-              <ExternalLink className="w-3 sm:w-4 h-3 sm:h-4" />
+              Unlock Premium Access
             </button>
+          </form>
+
+          {/* Divider */}
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-200"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-4 bg-white text-gray-500 font-medium">
+                Don't have premium access?
+              </span>
+            </div>
           </div>
-          
-          <button
-            onClick={onClose}
-            className="w-full mt-3 sm:mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 sm:py-3 rounded-xl font-medium transition-all duration-200 text-sm sm:text-base"
-          >
-            Close
-          </button>
+
+          {/* Purchase Options */}
+          <div className="space-y-3">
+            <h4 className="text-lg font-bold text-gray-900 text-center">
+              Get Premium Credits
+            </h4>
+            
+            <div className="grid gap-3">
+              <button
+                onClick={() => openStripeLink('https://buy.stripe.com/aFa3cuagabhb78k4bacQU03')}
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-4 rounded-xl font-semibold transition-all duration-200 hover:scale-105 flex items-center justify-center gap-3 shadow-lg text-sm lg:text-base"
+              >
+                <CreditCard className="w-5 h-5" />
+                🚀 Pro Analysis (30 Credits)
+                <ExternalLink className="w-4 h-4" />
+              </button>
+              
+              <button
+                onClick={() => openStripeLink('https://buy.stripe.com/bJe3cu5ZU0Cx50c5fecQU04')}
+                className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white py-4 rounded-xl font-semibold transition-all duration-200 hover:scale-105 flex items-center justify-center gap-3 shadow-lg text-sm lg:text-base"
+              >
+                <CreditCard className="w-5 h-5" />
+                💎 Elite Analysis (50 Credits)
+                <ExternalLink className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -2,18 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ensure proper touch targets on mobile */
 @layer base {
+  /* Ensure proper touch targets on mobile */
   button, input, select, textarea {
-    @apply min-h-[44px] sm:min-h-[auto];
+    @apply min-h-[44px] lg:min-h-[auto];
   }
   
-  /* Improve text readability on small screens */
+  /* Improve text readability */
   body {
-    @apply text-sm sm:text-base;
+    @apply text-sm lg:text-base font-medium;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   }
   
-  /* Prevent horizontal scroll on mobile */
+  /* Prevent horizontal scroll */
   html, body {
     @apply overflow-x-hidden;
   }
@@ -22,23 +23,86 @@
   * {
     -webkit-overflow-scrolling: touch;
   }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
-/* Custom scrollbar for chat history */
 @layer utilities {
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 4px;
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
   }
   
-  .scrollbar-thin::-webkit-scrollbar-track {
+  .custom-scrollbar::-webkit-scrollbar-track {
     @apply bg-gray-100 rounded-full;
   }
   
-  .scrollbar-thin::-webkit-scrollbar-thumb {
+  .custom-scrollbar::-webkit-scrollbar-thumb {
     @apply bg-gray-300 rounded-full;
   }
   
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     @apply bg-gray-400;
+  }
+
+  /* Backdrop blur fallback */
+  .backdrop-blur-xl {
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  /* Glass effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent;
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Focus styles */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl focus-ring;
+  }
+
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-xl border border-gray-200 transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md focus-ring;
   }
 }
