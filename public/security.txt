@@ -1,0 +1,23 @@
+# Security Policy for ForexBot
+
+# Contact Information
+Contact: security@forexbot.ai
+Contact: https://forexbot.ai/security
+
+# Preferred Languages
+Preferred-Languages: en
+
+# Canonical URL
+Canonical: https://forexbot.ai/.well-known/security.txt
+
+# Policy
+Policy: https://forexbot.ai/security-policy
+
+# Acknowledgments
+Acknowledgments: https://forexbot.ai/security-acknowledgments
+
+# Hiring
+Hiring: https://forexbot.ai/careers
+
+# Expires
+Expires: 2025-12-31T23:59:59.000Z

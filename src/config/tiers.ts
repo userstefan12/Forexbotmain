@@ -21,15 +21,16 @@ export const CHAT_TIERS: ChatTier[] = [
   }
 ];
 
+// Stripe URLs - using environment variables for security
 export const STRIPE_URLS = {
-  "30": import.meta.env.VITE_STRIPE_30_URL || "https://buy.stripe.com/aFa3cuagabhb78k4bacQU03",
-  "50": import.meta.env.VITE_STRIPE_50_URL || "https://buy.stripe.com/bJe3cu5ZU0Cx50c5fecQU04"
+  "30": import.meta.env.VITE_STRIPE_30_URL || "",
+  "50": import.meta.env.VITE_STRIPE_50_URL || ""
 };
 
+// Webhook URLs - using environment variables for security
 export const WEBHOOK_URLS = [
-  import.meta.env.VITE_WEBHOOK_URL || "https://asdfasfdsvd.app.n8n.cloud/webhook/2d83855b-305b-40fe-90d9-628f9b2de054",
-  "https://asdfasfdsvd.app.n8n.cloud/webhook-test/2d83855b-305b-40fe-90d9-628f9b2de054"
-];
+  import.meta.env.VITE_WEBHOOK_URL || ""
+].filter(Boolean); // Remove empty URLs
 
 export const FIXED_AI_RESPONSE = "Your Analysis is being process and on its way to your E-mail Inbox! It may takes 2 minutes for you to receive them in your inbox!";
 
