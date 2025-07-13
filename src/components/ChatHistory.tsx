@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { MessageCircle } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 import { ChatMessage } from './ChatMessage';
 import { ChatMessage as ChatMessageType } from '../types';
 
@@ -19,17 +19,25 @@ export function ChatHistory({ messages }: ChatHistoryProps) {
   return (
     <div
       ref={scrollRef}
-      className="min-h-[200px] max-h-[350px] overflow-y-auto bg-gradient-to-b from-gray-50 to-blue-50/30 rounded-xl p-4 mb-4 shadow-inner border border-gray-100"
+      className="h-64 sm:h-80 lg:h-96 overflow-y-auto bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 mb-4 sm:mb-6 border border-gray-100 scroll-smooth"
+      style={{ 
+        scrollbarWidth: 'thin',
+        scrollbarColor: '#cbd5e1 #f1f5f9'
+      }}
     >
       {messages.length === 0 ? (
-        <div className="flex flex-col items-center justify-center h-full text-gray-500 text-sm">
-          <MessageCircle className="w-8 h-8 mb-2 opacity-50" />
-          <span>Start a conversation...</span>
+        <div className="flex flex-col items-center justify-center h-full text-gray-400 px-4">
+          <MessageSquare className="w-8 h-8 sm:w-12 sm:h-12 mb-2 sm:mb-3 opacity-50" />
+          <p className="text-xs sm:text-sm text-center leading-relaxed">
+            Ask about gold prices, forex pairs, or market trends...
+          </p>
         </div>
       ) : (
-        messages.map((message, index) => (
-          <ChatMessage key={index} message={message} />
-        ))
+        <div className="space-y-3 sm:space-y-4">
+          {messages.map((message, index) => (
+            <ChatMessage key={index} message={message} />
+          ))}
+        </div>
       )}
     </div>
   );

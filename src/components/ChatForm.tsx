@@ -18,22 +18,22 @@ export function ChatForm({ onSendMessage, disabled }: ChatFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-3">
+    <form onSubmit={handleSubmit} className="flex space-x-2 sm:space-x-3">
       <input
         type="text"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        placeholder="Ask about gold prices, forex pairs, market trends..."
-        className="flex-1 px-5 py-3 border-2 border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white shadow-sm transition-all duration-200 hover:border-gray-300"
+        placeholder="Ask about gold prices, forex pairs..."
+        className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white transition-all duration-200 text-sm sm:text-base placeholder:text-gray-400"
         disabled={disabled}
       />
       <button
         type="submit"
         disabled={disabled || !message.trim()}
-        className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:from-gray-300 disabled:to-gray-400 text-white px-6 py-3 rounded-full font-semibold transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300 flex items-center gap-2 shadow-lg disabled:shadow-none"
+        className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:bg-gray-300 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all duration-200 flex items-center justify-center space-x-1 sm:space-x-2 shadow-sm hover:shadow-md disabled:shadow-none active:scale-95 flex-shrink-0"
       >
         <Send className="w-4 h-4" />
-        Send
+        <span className="hidden xs:inline text-sm sm:text-base">Send</span>
       </button>
     </form>
   );

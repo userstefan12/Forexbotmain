@@ -11,9 +11,7 @@ export function useChatApp() {
   const [currentTier, setCurrentTier] = useState("10");
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
-  const [isStripeModalOpen, setIsStripeModalOpen] = useState(false);
   const [passwordError, setPasswordError] = useState("");
-  const [selectedStripeUrl, setSelectedStripeUrl] = useState("");
 
   const ensureEmail = useCallback(async (): Promise<string> => {
     if (email) return email;
@@ -85,7 +83,7 @@ export function useChatApp() {
     // Update count immediately after user message
     const newCount = (counts[tierKey] || 0) + 1;
     const updatedCounts = {
-      ...prev,
+      ...counts,
       [tierKey]: newCount
     };
     setCounts(updatedCounts);
@@ -126,12 +124,6 @@ export function useChatApp() {
     }
   }, [counts, history, setCounts, setHistory, ensureEmail]);
 
-  const openStripeModal = useCallback((stripeUrl: string) => {
-    setSelectedStripeUrl(stripeUrl);
-    setIsStripeModalOpen(true);
-    setIsPasswordModalOpen(false);
-  }, []);
-
   return {
     // State
     currentTier,
@@ -140,18 +132,14 @@ export function useChatApp() {
     history,
     isPasswordModalOpen,
     isBuyModalOpen,
-    isStripeModalOpen,
     passwordError,
-    selectedStripeUrl,
     
     // Actions
     switchTier,
     setIsPasswordModalOpen,
     setIsBuyModalOpen,
-    setIsStripeModalOpen,
     setPasswordError,
     handlePasswordSubmit,
-    sendMessage,
-    openStripeModal
+    sendMessage
   };
 }

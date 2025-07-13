@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Main Page -->
+  <url>
+    <loc>https://forexbot.ai/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBH31aoPyY7d9q3hMhZiV1rTr3mhfAY5OtIg&s</image:loc>
+      <image:title>ForexBot - AI-Powered Trading Analysis</image:title>
+      <image:caption>Professional forex and gold trading analysis platform</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Additional pages can be added here as the app grows -->
+  
+</urlset>

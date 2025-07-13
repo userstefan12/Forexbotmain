@@ -1,0 +1,67 @@
+# ForexBot - Robots.txt
+# Allow all web crawlers and AI bots
+
+User-agent: *
+Allow: /
+
+# Specific AI Bot Permissions
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+# Disallow sensitive areas (none for this app)
+# Disallow: /admin
+# Disallow: /private
+
+# Sitemap location
+Sitemap: https://forexbot.ai/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
+
+# Host preference
+Host: https://forexbot.ai

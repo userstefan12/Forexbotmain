@@ -3,9 +3,8 @@ import { Header } from './components/Header';
 import { ChatSection } from './components/ChatSection';
 import { PasswordModal } from './components/PasswordModal';
 import { BuyModal } from './components/BuyModal';
-import { StripeModal } from './components/StripeModal';
 import { useChatApp } from './hooks/useChatApp';
-import { CHAT_TIERS, STRIPE_URLS } from './config/tiers';
+import { CHAT_TIERS } from './config/tiers';
 
 function App() {
   const {
@@ -15,64 +14,49 @@ function App() {
     history,
     isPasswordModalOpen,
     isBuyModalOpen,
-    isStripeModalOpen,
     passwordError,
-    selectedStripeUrl,
-    switchTier,
     setIsPasswordModalOpen,
     setIsBuyModalOpen,
-    setIsStripeModalOpen,
     setPasswordError,
     handlePasswordSubmit,
-    sendMessage,
-    openStripeModal
+    sendMessage
   } = useChatApp();
 
   const currentTierData = CHAT_TIERS.find(tier => tier.key === currentTier);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      <div className="max-w-3xl mx-auto">
-        <Header
-          email={email}
-          onPremiumClick={() => {
-            setPasswordError('');
-            setIsPasswordModalOpen(true);
-          }}
-        />
+    <div className="min-h-screen bg-gray-50">
+      <Header
+        email={email}
+        onPremiumClick={() => {
+          setPasswordError('');
+          setIsPasswordModalOpen(true);
+        }}
+      />
 
-        <main className="p-6 space-y-6">
-          {currentTierData && (
-            <ChatSection
-              tier={currentTierData}
-              messages={history[currentTier] || []}
-              count={counts[currentTier] || 0}
-              onSendMessage={(message) => sendMessage(currentTier, message)}
-              isActive={true}
-            />
-          )}
-        </main>
+      <main className="max-w-4xl mx-auto p-3 sm:p-4 lg:p-6 pb-6 sm:pb-8">
+        {currentTierData && (
+          <ChatSection
+            tier={currentTierData}
+            messages={history[currentTier] || []}
+            count={counts[currentTier] || 0}
+            onSendMessage={(message) => sendMessage(currentTier, message)}
+            isActive={true}
+          />
+        )}
+      </main>
 
-        <PasswordModal
-          isOpen={isPasswordModalOpen}
-          onClose={() => setIsPasswordModalOpen(false)}
-          onSubmit={handlePasswordSubmit}
-          onBuyCredits={() => openStripeModal(STRIPE_URLS["30"])}
-          error={passwordError}
-        />
+      <PasswordModal
+        isOpen={isPasswordModalOpen}
+        onClose={() => setIsPasswordModalOpen(false)}
+        onSubmit={handlePasswordSubmit}
+        error={passwordError}
+      />
 
-        <BuyModal
-          isOpen={isBuyModalOpen}
-          onClose={() => setIsBuyModalOpen(false)}
-        />
-
-        <StripeModal
-          isOpen={isStripeModalOpen}
-          onClose={() => setIsStripeModalOpen(false)}
-          onSelectPlan={openStripeModal}
-          selectedUrl={selectedStripeUrl}
-        />
-      </div>
+      <BuyModal
+        isOpen={isBuyModalOpen}
+        onClose={() => setIsBuyModalOpen(false)}
+      />
     </div>
   );
 }
