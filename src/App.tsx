@@ -3,9 +3,8 @@ import { Header } from './components/Header';
 import { ChatSection } from './components/ChatSection';
 import { PasswordModal } from './components/PasswordModal';
 import { BuyModal } from './components/BuyModal';
-import { StripeModal } from './components/StripeModal';
 import { useChatApp } from './hooks/useChatApp';
-import { CHAT_TIERS, STRIPE_URLS } from './config/tiers';
+import { CHAT_TIERS } from './config/tiers';
 
 function App() {
   const {
@@ -15,17 +14,13 @@ function App() {
     history,
     isPasswordModalOpen,
     isBuyModalOpen,
-    isStripeModalOpen,
     passwordError,
-    selectedStripeUrl,
     switchTier,
     setIsPasswordModalOpen,
     setIsBuyModalOpen,
-    setIsStripeModalOpen,
     setPasswordError,
     handlePasswordSubmit,
-    sendMessage,
-    openStripeModal
+    sendMessage
   } = useChatApp();
 
   const currentTierData = CHAT_TIERS.find(tier => tier.key === currentTier);
@@ -57,20 +52,12 @@ function App() {
           isOpen={isPasswordModalOpen}
           onClose={() => setIsPasswordModalOpen(false)}
           onSubmit={handlePasswordSubmit}
-          onBuyCredits={() => openStripeModal(STRIPE_URLS["30"])}
           error={passwordError}
         />
 
         <BuyModal
           isOpen={isBuyModalOpen}
           onClose={() => setIsBuyModalOpen(false)}
-        />
-
-        <StripeModal
-          isOpen={isStripeModalOpen}
-          onClose={() => setIsStripeModalOpen(false)}
-          onSelectPlan={openStripeModal}
-          selectedUrl={selectedStripeUrl}
         />
       </div>
     </div>
