@@ -12,9 +12,11 @@ export function Header({ email, onPremiumClick }: HeaderProps) {
       <div className="max-w-4xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
-              <TrendingUp className="w-6 h-6 text-white" />
-            </div>
+            <img 
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBH31aoPyY7d9q3hMhZiV1rTr3mhfAY5OtIg&s" 
+              alt="ForexBot Logo" 
+              className="w-10 h-10 rounded-xl shadow-lg object-cover"
+            />
             <div>
               <h1 className="text-xl font-bold text-gray-900">ForexBot</h1>
               <p className="text-sm text-gray-500">AI-Powered Trading Analysis</p>
