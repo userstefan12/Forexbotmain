@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <Header
           email={email}
           onPremiumClick={() => {
@@ -36,7 +36,7 @@ function App() {
           }}
         />
 
-        <main className="p-6 space-y-6">
+        <main className="p-3 sm:p-6 space-y-4 sm:space-y-6">
           {currentTierData && (
             <ChatSection
               tier={currentTierData}
