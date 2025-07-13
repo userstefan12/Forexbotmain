@@ -19,15 +19,21 @@ export function ChatHistory({ messages }: ChatHistoryProps) {
   return (
     <div
       ref={scrollRef}
-      className="h-80 overflow-y-auto bg-gray-50 rounded-xl p-4 mb-6 border border-gray-100"
+      className="h-64 sm:h-80 lg:h-96 overflow-y-auto bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 mb-4 sm:mb-6 border border-gray-100 scroll-smooth"
+      style={{ 
+        scrollbarWidth: 'thin',
+        scrollbarColor: '#cbd5e1 #f1f5f9'
+      }}
     >
       {messages.length === 0 ? (
-        <div className="flex flex-col items-center justify-center h-full text-gray-400">
-          <MessageSquare className="w-12 h-12 mb-3 opacity-50" />
-          <p className="text-sm">Ask about gold prices, forex pairs, or market trends...</p>
+        <div className="flex flex-col items-center justify-center h-full text-gray-400 px-4">
+          <MessageSquare className="w-8 h-8 sm:w-12 sm:h-12 mb-2 sm:mb-3 opacity-50" />
+          <p className="text-xs sm:text-sm text-center leading-relaxed">
+            Ask about gold prices, forex pairs, or market trends...
+          </p>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {messages.map((message, index) => (
             <ChatMessage key={index} message={message} />
           ))}
