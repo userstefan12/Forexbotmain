@@ -54,3 +54,5 @@ export function Header({ email, onPremiumClick }: HeaderProps) {
     </header>
   );
 }
+  )
+}
