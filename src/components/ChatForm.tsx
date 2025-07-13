@@ -25,16 +25,16 @@ export function ChatForm({ onSendMessage, disabled }: ChatFormProps) {
   ];
 
   return (
-    <div className="space-y-3 lg:space-y-4">
+    <div className="space-y-4">
       {/* Quick Suggestions */}
       {message === '' && (
-        <div className="flex flex-wrap gap-1 lg:gap-2">
+        <div className="flex flex-wrap gap-2">
           {suggestions.map((suggestion, index) => (
             <button
               key={index}
               onClick={() => setMessage(suggestion)}
               disabled={disabled}
-              className="text-xs bg-gray-100 hover:bg-gray-200 disabled:bg-gray-50 disabled:text-gray-400 text-gray-700 px-2 lg:px-3 py-1 lg:py-2 rounded-full transition-colors border border-gray-200/50"
+              className="text-xs lg:text-sm bg-gray-100 hover:bg-gray-200 disabled:bg-gray-50 disabled:text-gray-400 text-gray-700 px-3 py-2 rounded-full transition-colors border border-gray-200/50"
             >
               {suggestion}
             </button>
@@ -50,19 +50,19 @@ export function ChatForm({ onSendMessage, disabled }: ChatFormProps) {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Ask about markets, trading strategies, or analysis..."
-            className="w-full px-3 py-3 lg:px-4 lg:py-4 pr-12 lg:pr-14 bg-white border-2 border-gray-200/50 rounded-lg lg:rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm placeholder-gray-400 shadow-sm"
+            className="w-full px-4 py-4 lg:px-6 lg:py-5 pr-14 lg:pr-16 bg-white border-2 border-gray-200/50 rounded-xl lg:rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm lg:text-base placeholder-gray-400 shadow-sm"
             disabled={disabled}
           />
           
           <button
             type="submit"
             disabled={disabled || !message.trim()}
-            className="absolute right-1 lg:right-2 top-1/2 -translate-y-1/2 w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:from-gray-300 disabled:to-gray-400 text-white rounded-lg transition-all duration-200 hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center shadow-lg disabled:shadow-none"
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:from-gray-300 disabled:to-gray-400 text-white rounded-lg lg:rounded-xl transition-all duration-200 hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center shadow-lg disabled:shadow-none"
           >
             {disabled ? (
-              <Sparkles className="w-3 h-3 lg:w-4 lg:h-4 opacity-50" />
+              <Sparkles className="w-4 h-4 lg:w-5 lg:h-5 opacity-50" />
             ) : (
-              <Send className="w-3 h-3 lg:w-4 lg:h-4" />
+              <Send className="w-4 h-4 lg:w-5 lg:h-5" />
             )}
           </button>
         </div>
