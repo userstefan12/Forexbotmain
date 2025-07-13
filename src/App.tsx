@@ -1,0 +1,80 @@
+import React from 'react';
+import { Header } from './components/Header';
+import { ChatSection } from './components/ChatSection';
+import { PasswordModal } from './components/PasswordModal';
+import { BuyModal } from './components/BuyModal';
+import { StripeModal } from './components/StripeModal';
+import { useChatApp } from './hooks/useChatApp';
+import { CHAT_TIERS, STRIPE_URLS } from './config/tiers';
+
+function App() {
+  const {
+    currentTier,
+    email,
+    counts,
+    history,
+    isPasswordModalOpen,
+    isBuyModalOpen,
+    isStripeModalOpen,
+    passwordError,
+    selectedStripeUrl,
+    switchTier,
+    setIsPasswordModalOpen,
+    setIsBuyModalOpen,
+    setIsStripeModalOpen,
+    setPasswordError,
+    handlePasswordSubmit,
+    sendMessage,
+    openStripeModal
+  } = useChatApp();
+
+  const currentTierData = CHAT_TIERS.find(tier => tier.key === currentTier);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="max-w-3xl mx-auto">
+        <Header
+          email={email}
+          onPremiumClick={() => {
+            setPasswordError('');
+            setIsPasswordModalOpen(true);
+          }}
+        />
+
+        <main className="p-6 space-y-6">
+          {currentTierData && (
+            <ChatSection
+              tier={currentTierData}
+              messages={history[currentTier] || []}
+              count={counts[currentTier] || 0}
+              onSendMessage={(message) => sendMessage(currentTier, message)}
+              isActive={true}
+            />
+          )}
+        </main>
+
+        <PasswordModal
+          isOpen={isPasswordModalOpen}
+          onClose={() => setIsPasswordModalOpen(false)}
+          onSubmit={handlePasswordSubmit}
+          onBuyCredits={() => openStripeModal(STRIPE_URLS["30"])}
+          error={passwordError}
+        />
+
+        <BuyModal
+          isOpen={isBuyModalOpen}
+          onClose={() => setIsBuyModalOpen(false)}
+        />
+
+        <StripeModal
+          isOpen={isStripeModalOpen}
+          onClose={() => setIsStripeModalOpen(false)}
+          onSelectPlan={openStripeModal}
+          selectedUrl={selectedStripeUrl}
+        />
+      </div>
+    </div>
+  );
+}
+
+export default App;
